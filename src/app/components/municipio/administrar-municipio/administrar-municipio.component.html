@@ -1,0 +1,54 @@
+<div class="container-fluid mt-4">
+    <div class="d-flex justify-content-center">
+        <div class="col-md-8">
+            <h4 class="fst-italic fw-semibold text-center">Administrar Municipios</h4>
+            <span class="d-flex justify-content-end">
+                <a href="#" class="btn btn-primary col-sm-3" [routerLink]="['/town/add']"><i class="fa fa-plus fs-6"></i></a>
+            </span>
+
+            <div class="mt-2">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr class="bg-dark table-dark table table-sm text-center">
+                            <th style="width: 5%;">Codigo</th>
+                            <th style="width: 20%;">Nombre</th>
+                            <th style="width: 15%;">Fundacion</th>
+                            <th style="width: 10%;">Habitantes</th>
+                            <th style="width: 10%;">Area (m2)</th>
+                            <th style="width: 15%;">Estado</th>
+                            <th style="width: 15%;">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let objMunicipio of arregloMunicipios" class="text-center">
+                            <td>{{objMunicipio.codigoMunicipio}}</td>
+                            <td>{{objMunicipio.nombreMunicipio}}</td>
+                            <td>{{objMunicipio.fechaFundacionMunicipio | date}}</td>
+                            <td>{{objMunicipio.habitantesMunicipio}}</td>
+                            <td>{{objMunicipio.areaMunicipio}}</td>
+                            <td [ngClass]="objMunicipio.estadoMunicipio==1?'text-success':'text-danger'">{{objMunicipio.estadoMunicipio==1?'Activo':'Inactivo'}}</td>
+                            <td class="justify-content-between">
+                                <a class="btn btn-warning col-sm-4" [routerLink]="['/town/update/', objMunicipio.codigoMunicipio]" style="margin-right: 5px;"><i class="fas fa-pen" style="color: #ffffff;"></i></a>
+                                <a class="btn btn-danger col-sm-4" (click)="abrirVentanaModal(ventanaEliminar, objMunicipio)" style="margin-left: 5px;"><i class="fa fa-trash fs-6"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #ventanaEliminar>
+    <div class="modal-header bg-dark text-white py-2 rounded-top-2">
+        <h5 class="modal-title">{{tituloModal}}</h5>
+        <button type="button" class="btn-close text-white" (click)="modalRef.hide()" ></button>
+    </div>
+    <div class="modal-body">
+        <span>{{cuerpoModal}} <br> {{contenidoModal}}</span>
+    </div>
+    <div class="modal-footer py-2">
+        <button class="btn btn-dark btn-sm" (click)="botonEliminar()">Eliminar</button>
+        <button class="btn btn-outline-danger btn-sm" (click)="botonCancelar()">Cancelar</button>
+    </div>
+</ng-template>

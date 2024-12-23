@@ -1,0 +1,48 @@
+<div class="container-fluid mt-4">
+    <div class="d-flex justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    <h4 class="fw-semibold fst-italic">Formulario Reggistrar Municipio</h4>
+                </div>
+                <div class="card-body">
+                    <form class="p-3" #formRegistrar="ngForm" (ngSubmit)="formRegistrar.form.valid && enviarFormulario(formRegistrar)">
+                        <div class="mb-3">
+                            <label for="nombreMunicipio" class="form-label">
+                                <span class="rojito">*</span> Nombre Municipio
+                                <input type="text" id="nombreMunicipio" name="nombreMunicipio" [(ngModel)]="objMunicipio.nombreMunicipio" class="form-control">
+                            </label>
+                        </div>
+                        <div class="mb-3">
+                            <label for="fechaFundacionMunicipio" class="form-label">
+                                <span>*</span> Fundacion Municipio
+                                <input type="text" class="form-control" id="fechaFundacionMunicipio" name="fechaFundacionMunicipio" [(ngModel)]="objMunicipio.fechaFundacionMunicipio"
+                                bsDatepicker [bsConfig]="{containerClass: 'theme-blue', dateInputFormat:'DD-MM-YYYY'}">
+                            </label>
+                        </div>
+                        <div class="mb-3">
+                            <label for="cantidadHabitantesMunicipio" class="form-label">
+                                <span class="rojito">*</span> Número de Habitantes
+                            </label>
+                            <input type="number" id="cantidadHabitantesMunicipio" name="cantidadHabitantesMunicipio"
+                            class="form-control" [(ngModel)]="objMunicipio.habitantesMunicipio">
+                        </div>
+                        <div class="mb-3">
+                            <label for="areaMunicipio" class="form-label">
+                                <span class="rojito">*</span> Área m2
+                            </label>
+                            <input type="number" id="areaMunicipio" name="areaMunicipio"
+                            class="form-control" [(ngModel)]="objMunicipio.areaMunicipio">
+                        </div>
+                        <div class="mb-3">
+                            <span class="d-flex justify-content-center">
+                                <button type="submit" class="btn btn-primary col-3 mx-2">Registrar</button>
+                                <a href="#" class="btn btn-danger col-3 mx-2" [routerLink]="['/town/admin']">Cancelar</a>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
